@@ -14,8 +14,9 @@ import {
   import * as React from "react";
   
   interface ResetPasswordEmailProps {
-    username?: string;
+    name?: string;
     updatedDate?: Date;
+    token?: string;
   }
   
   const baseUrl = process.env.VERCEL_URL
@@ -23,8 +24,9 @@ import {
     : "";
   
   export const ResetPasswordEmail = ({
-    username,
+    name,
     updatedDate,
+    token
   }: ResetPasswordEmailProps) => {
     const formattedDate = new Intl.DateTimeFormat("en", {
       dateStyle: "medium",
@@ -48,7 +50,7 @@ import {
               </Row>
             </Section>
             <Section style={content}>
-              <Text style={paragraph}>Hi {username},</Text>
+              <Text style={paragraph}>Hi {name},</Text>
               <Text style={paragraph}>
                 You updated the password for your Twitch account on{" "}
                 {formattedDate}. If this was you, then no further action is
@@ -56,7 +58,7 @@ import {
               </Text>
               <Text style={paragraph}>
                 However if you did NOT perform this password change, please{" "}
-                <Link href="#" style={link}>
+                <Link href={token} style={link}>
                   reset your account password
                 </Link>{" "}
                 immediately.
