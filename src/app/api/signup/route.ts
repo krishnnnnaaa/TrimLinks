@@ -12,6 +12,7 @@ export async function POST(request:Request):Promise<ApiResponse>{
 
         const existingUser = await UserModel.findOne(email);
 
+        
         if(existingUser){
             return {
                 success: false,
