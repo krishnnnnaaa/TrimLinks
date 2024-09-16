@@ -37,6 +37,9 @@ export interface User extends Document{
     password: string,
     createdAt: Date,
     urls: Url[],
+    verified: boolean
+    verificationToken: string,
+    verificationTokenExpiry: Date,
     passwordResetToken: string,
     passwordResetTokenExpiry: Date,
 }
@@ -64,6 +67,18 @@ const UserSchema:Schema<User> = new Schema({
         default: Date.now
     },
     urls: [UrlSchema],
+    verified: {
+        type: Boolean,
+        default: false,
+    },
+    verificationToken: {
+        type: String,
+        required: true,
+    },
+    verificationTokenExpiry: {
+        type: Date,
+        required: true,
+    },
     passwordResetToken:{
         type: String,
     },
@@ -76,6 +91,6 @@ const UserSchema:Schema<User> = new Schema({
 
 const UserModel = (mongoose.models.User as mongoose.Model<User>) || mongoose.model<User>("User", UserSchema);
 
-const UelModel = (mongoose.models.Url as mongoose.Model<Url>) || mongoose.model<Url>("Url", UrlSchema);
+const UrlModel = (mongoose.models.Url as mongoose.Model<Url>) || mongoose.model<Url>("Url", UrlSchema);
 
-export {UserModel, UrlSchema}
+export {UserModel, UrlModel}
