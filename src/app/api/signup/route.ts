@@ -2,66 +2,81 @@ import { sendVerificationEmail } from "@/backer/verificationEmail";
 import dbConnect from "@/lib/dbConnect";
 import { UserModel } from "@/model/User";
 import { createTokenGenerator } from "cybertoken";
-import  bcrypt from 'bcryptjs'
-export async function POST(request:Request){
-    await dbConnect()
+import bcrypt from "bcryptjs";
+export async function POST(request: Request) {
+  await dbConnect();
 
-    try {
-        const { name, email, password} = await request.json();
+  try {
+    const { username, email, password } = await request.json();
 
-        const existingVerifiedUser = await UserModel.findOne({email, verified: true});
-        const token = createTokenGenerator({
-            prefixWithoutUnderscore: "userkey",
-        })
+    const existingUser = await UserModel.findOne({email});
+    console.log(existingUser);
+    const token = createTokenGenerator({
+      prefixWithoutUnderscore: "userkey",
+    });
 
-        
-        if(existingVerifiedUser){
-            return Response.json({
-                success: false,
-                message: "User already exists"
-            }, {status: 400})
-        }else{
-            const encryptedPassword = await bcrypt.hash(password, 10);
-            const verificationToken = token.generateToken();
-            const verificationExpiry = new Date();
-            verificationExpiry.setHours(verificationExpiry.getHours() + 5);
-            const newUser = new UserModel({
-                name,
-                email,
-                password: encryptedPassword,
-                createdAt: new Date().toString().split(" ").splice(1,4).join(' '),
-                urls: [],
-                verificationToken,
-                verificationTokenExpiry: verificationExpiry
-            })
+    if (existingUser) {
+      return Response.json(
+        {
+          success: false,
+          message: "User already exists",
+        },
+        { status: 400 }
+      );
+    } else {
+      const encryptedPassword = await bcrypt.hash(password, 10);
+      const verificationToken = token.generateToken();
+      const verificationExpiry = new Date();
+      verificationExpiry.setHours(verificationExpiry.getHours() + 5);
+    //   console.log(name);
 
-            await newUser.save()
+      const newUser = new UserModel({
+        username,
+        email,
+        password: encryptedPassword,
+        createdAt: new Date().toString().split(" ").splice(1, 4).join(" "),
+        verificationToken,
+        verificationTokenExpiry: verificationExpiry,
+        urls: [],
+      });
 
-            // sending verification email
-            const verifyemail = await sendVerificationEmail(
-                email,
-                name,
-                verificationToken
-            )
+      await newUser.save();
 
-            if(!verifyemail.success){
-                return Response.json({
-                    success: false,
-                    message: "Failed to send verification email!"
-                }, {status: 400})
-            }
-            
-            return Response.json({
-                success: true,
-                message: "User created successfully, please confirm your email!"
-            }, {status: 200})
-        }
-    } catch (error) {
-        console.error('Something wents wrongs, ', error);
-        return Response.json({
+      // sending verification email
+      const verifyemail = await sendVerificationEmail(
+        email,
+        username,
+        verificationToken
+      );
+      console.log(verifyemail);
+      
+
+      if (!verifyemail.success) {
+        return Response.json(
+          {
             success: false,
-            message: "Something wents wrongs!"
-        }, {status: 500})
-        
+            message: "Failed to send verification email!",
+          },
+          { status: 400 }
+        );
+      }
+
+      return Response.json(
+        {
+          success: true,
+          message: "User created successfully, please confirm your email!",
+        },
+        { status: 200 }
+      );
     }
+  } catch (error) {
+    console.error("Something wents wrongs, ", error);
+    return Response.json(
+      {
+        success: false,
+        message: "Something wents wrongs!",
+      },
+      { status: 500 }
+    );
+  }
 }

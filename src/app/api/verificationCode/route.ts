@@ -1,12 +1,11 @@
 import dbConnect from "@/lib/dbConnect";
 import { UserModel } from "@/model/User";
-import { z } from "zod";
 
 export async function POST(request: Request){
     await dbConnect()
     try {
          const {username, token } = await request.json()
-         const userWithToken = await UserModel.findOne({name: username, verificationToken: token});
+         const userWithToken = await UserModel.findOne({username, verificationToken: token});
          if(!userWithToken){
             return Response.json({
                 success: false,

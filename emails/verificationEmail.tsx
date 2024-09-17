@@ -13,8 +13,8 @@ import {
 import * as React from "react";
 
 interface VerificationEmailProps {
-  username?: string;
-  token?: string;
+  username: string;
+  token: string;
 }
 
 const baseUrl = process.env.VERCEL_URL

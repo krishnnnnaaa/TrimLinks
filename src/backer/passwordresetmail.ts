@@ -9,7 +9,7 @@ export async function sendPasswordResetEmail(
 ):Promise<ApiResponse>{
     try {
         await resend.emails.send({
-            from: "<onboarding@resend.dev>",
+            from: "onboarding@resend.dev",
             to: email,
             subject: 'TrimLinks Accound Passeword Reset',
             react: ResetPasswordEmail({name, token}),
