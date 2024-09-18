@@ -24,7 +24,7 @@ redirectUrl:{
 createdAt:{
     type: Date,
     required: true,
-    default: Date.now
+    default: new Date()
 },
 })
 
