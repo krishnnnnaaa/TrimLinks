@@ -13,7 +13,7 @@ export async function GET(request: Request){
         const {searchParams} = new URL(request.url)
 
         const queryParams = {
-            name : searchParams.get('name')
+            username : searchParams.get('name')
         }
 
         // Validation of name from zod
