@@ -17,9 +17,7 @@ interface VerificationEmailProps {
   token: string;
 }
 
-const baseUrl = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "";
+const baseUrl = process.env.ORIGIN_KEY || "";
 
 export const VerificationEmail = ({
   username,
@@ -44,23 +42,23 @@ export const VerificationEmail = ({
               <br />
               We need a little more information to complete your registration,
               including a confirmation of your email address.
-              <br />
+              <br /><br/>
               Click below to confirm your email address:
               <br />
             </Text>
-            <Button style={button} href={token}>
+            <Button style={button} href={`${baseUrl}email-verification/${username}?token=${token}`}>
               Confirm Email
             </Button>
             <Text style={text}>
               If you have problems, please paste the above URL into your web
               browser.
             </Text>
+            <Link>{`${baseUrl}email-verification/${username}?token=${token}`}</Link>
             <Text style={text}>
               This link will verify your email address, and then you&apos;ll
-              officially be a part of the [customer portal] community.
+              officially be a part of the TrimLinks community.
+              </Text>
               <br />
-              See you there! Best regards, the [company] team
-            </Text>
             <Text style={text}>
               Once again - thank you for joining our TrimLinks family!
             </Text>

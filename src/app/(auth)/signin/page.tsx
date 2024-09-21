@@ -43,7 +43,7 @@ const page = () => {
         try {
           const response = await axios.get(`/api/unique-name?username=${debouncedUsername}`)
           setusernameMsg(response.data.message)
-        } catch (error) {
+         } catch (error) {
           const axiosError = error as AxiosError<ApiResponse>;
           setusernameMsg(
             axiosError.response?.data.message ?? 'Error in checking username'
@@ -86,8 +86,8 @@ const page = () => {
 
   
   const debouncedResults = useCallback(
-    // the debounce is set to 1000ms, meaning 'getResults' will only be called 1000ms after the user stops typing.
-    _.debounce((debouncedUsername: string) => checkingUser(debouncedUsername), 1000), []);
+    // the debounce is set to 1000ms, meaning 'checkingUser' will only be called 1000ms after the user stops typing.
+    _.debounce((debouncedUsername: string) => checkingUser(debouncedUsername), 500), []);
   
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 text-black">
@@ -97,7 +97,7 @@ const page = () => {
             Join TrimLinks
           </h1>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
             <FormField
           name="username"
           control={form.control}
@@ -112,6 +112,11 @@ const page = () => {
                 }}
                  />
               </FormControl>
+              <span className="text-sm">
+                {
+               isCheckingUsername ? <Loader2 className="animate-spin" size={20}/> : (usernameMsg === 'Username is available!' ? (<span className="text-green-600">{usernameMsg}</span>) : (<span className="text-red-600">{usernameMsg}</span>))
+                }
+              </span>
             </FormItem>
           )}
         />

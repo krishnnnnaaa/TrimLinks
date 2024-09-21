@@ -38,8 +38,8 @@ export interface User extends Document{
     createdAt: Date,
     urls: Url[],
     verified: boolean
-    verificationToken: string,
-    verificationTokenExpiry: Date,
+    verificationToken: string | null,
+    verificationTokenExpiry: Date | null,
     passwordResetToken: string | null,
     passwordResetTokenExpiry: Date | null,
 }
@@ -74,10 +74,12 @@ const UserSchema:Schema<User> = new Schema({
     verificationToken: {
         type: String,
         required: true,
+        default: null,
     },
     verificationTokenExpiry: {
         type: Date,
         required: true,
+        default: null,
     },
     passwordResetToken:{
         type: String,

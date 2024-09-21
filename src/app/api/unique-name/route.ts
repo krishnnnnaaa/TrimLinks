@@ -1,34 +1,33 @@
 import dbConnect from "@/lib/dbConnect";
-import { nameValidation } from "@/schemas/signUpSchema"
+import { UserModel } from "@/model/User";
+// import { nameValidation } from "@/schemas/signUpSchema"
 import { z } from "zod";
 
-const nameSchema = z.object({
-    name: nameValidation,
-})
 
 export async function GET(request: Request){
     dbConnect()
 
     try {
+        
         const {searchParams} = new URL(request.url)
 
         const queryParams = {
-            username : searchParams.get('name')
+            username : searchParams.get('username')
         }
+        
+        
+        const userWithThisName = await UserModel.findOne({username: queryParams.username})
+        
 
-        // Validation of name from zod
-
-        const result = nameSchema.safeParse(queryParams);
-
-        if(!result.success){
+        if(userWithThisName){
             return Response.json({
                 success: false,
-                message: "Please input valid username!"
+                message: "Username is already taken!"
             }, {status: 400})
         }else{
             return Response.json({
                 success: true,
-                message: "Userame is available!"
+                message: "Username is available!"
             })
         }
     } catch (error) {
