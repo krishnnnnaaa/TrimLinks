@@ -11,7 +11,7 @@ export const authOptions:NextAuthOptions = {
             name: "Credentials",
             credentials: {
                 email: { label: "Email", type: "text"},
-                password: { label: "Password", type: "password" }
+                pasword: { label: "Password", type: "password" }
               },
               async authorize(credentials:any):Promise<any> {
                   await dbConnect()
@@ -20,7 +20,7 @@ export const authOptions:NextAuthOptions = {
                     const user = await UserModel.findOne({
                         $or: [
                             {email: credentials.identifier},
-                            {name: credentials.identifier},
+                            {username: credentials.identifier},
                         ]
                     }) 
                     
@@ -50,11 +50,15 @@ export const authOptions:NextAuthOptions = {
         async session({ session, token }) {
             if(token){    
                 session.user._id = token._id;
+                session.user.name = token.name;
             }
             return session
           },
           async jwt({ token, user }) {
-            token._id = user._id?.toString();
+            if(user){
+                token.name = user.name,
+                token._id = user._id?.toString();
+            }
             return token
           }
     }

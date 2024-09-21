@@ -14,81 +14,44 @@ import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
 import _ from 'lodash'
+import { signInSchema } from "@/schemas/signInSchema"
+import { signIn } from "next-auth/react"
 
 
 const page = () => {
-  const [username, setUsername] = useState('')
-  const [usernameMsg, setusernameMsg] = useState('')
-  const [isCheckingUsername, setIsCheckingUsername] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const {toast} = useToast()
   const router = useRouter()
 
   // zod implementation
 
-  const form = useForm<z.infer<typeof signUpSchema>>({
-    resolver: zodResolver(signUpSchema),
+  const form = useForm<z.infer<typeof signInSchema>>({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
-      username: '',
-      email: '',
+      identifier: '',
       password: ''
     }
   })
 
-  // useEffect(() => {
-    const checkingUser = async (debouncedUsername: string)=> {
-      if(debouncedUsername){
-        setIsCheckingUsername(true)
-        setusernameMsg("")
-        try {
-          const response = await axios.get(`/api/unique-name?username=${debouncedUsername}`)
-          setusernameMsg(response.data.message)
-         } catch (error) {
-          const axiosError = error as AxiosError<ApiResponse>;
-          setusernameMsg(
-            axiosError.response?.data.message ?? 'Error in checking username'
-          )
-        } finally{
-          setIsCheckingUsername(false)
-        }
-      }
-    }
-    // checkingUser()
-  // }, [])
+  const onSubmit = async (data:z.infer<typeof signInSchema>)=> {
+    const response = await signIn('credentials', {
+      redirect: false,
+      identifier: data.identifier,
+      password: data.password
+    })
+    
 
-  const onSubmit = async (data:z.infer<typeof signUpSchema>)=> {
-    setIsSubmitting(true)
-    try {
-      const response = await axios.post<ApiResponse>('/api/signup', data)
-      if(response.data.success){
-
-        toast({
-          title: "Success",
-          description: response.data.message
-        })
-        router.replace('/')
-      }
-    } catch (error) {
-     console.error("Error in signup", error) 
-     const axiosError = error as AxiosError<ApiResponse>;
-     const errorMsg = axiosError.response?.data.message
-     toast({
-      title: "signup failed",
-      description: errorMsg,
-      variant: "destructive"
-     })
-     setIsSubmitting(false)
-    }
-    finally{
-      setIsSubmitting(false)
+    if(response?.error){
+      toast({
+        title: "Login Failed!",
+        description: "Invalid username or password",
+        variant: "destructive"
+      })
+    }else if(response?.url){
+      router.replace('/workspace')
     }
   }
 
-  
-  const debouncedResults = useCallback(
-    // the debounce is set to 1000ms, meaning 'checkingUser' will only be called 1000ms after the user stops typing.
-    _.debounce((debouncedUsername: string) => checkingUser(debouncedUsername), 500), []);
-  
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100 text-black">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
@@ -99,29 +62,7 @@ const page = () => {
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
             <FormField
-          name="username"
-          control={form.control}
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="username" {...field}
-                onChange={(e)=> {
-                  field.onChange(e)
-                  debouncedResults(e.target.value)
-                }}
-                 />
-              </FormControl>
-              <span className="text-sm">
-                {
-               isCheckingUsername ? <Loader2 className="animate-spin" size={20}/> : (usernameMsg === 'Username is available!' ? (<span className="text-green-600">{usernameMsg}</span>) : (<span className="text-red-600">{usernameMsg}</span>))
-                }
-              </span>
-            </FormItem>
-          )}
-        />
-            <FormField
-          name="email"
+          name="identifier"
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -151,6 +92,7 @@ const page = () => {
             isSubmitting ? (
               <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
+              <span>Please wait...</span>
               </>
             ) : 'Signup'
           }
@@ -159,8 +101,8 @@ const page = () => {
           </Form>
           <div className="text-center mt-4">
             <p>
-              Already a member?
-              <Link href={'/signin'} className="text-blue-600 hover:text-blue-800">Sign in</Link>
+              Don&apos;t have an account?
+              <Link href={'/signup'} className="text-blue-600 hover:text-blue-800">Register</Link>
             </p>
 
           </div>
