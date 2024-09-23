@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Moon, Sun } from "lucide-react";
+import { LayoutDashboardIcon, LogOutIcon, Moon, Settings, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 const Navbar = () => {
@@ -27,7 +27,7 @@ const Navbar = () => {
         <ul className="flex justify-between items-center p-3 pr-4">
           <li>TrimLinks</li>
           <li>
-            {session ? (
+            {!session ? (
               <Button>Sign in</Button>
             ) : (
               <div className="flex items-center space-x-4">
@@ -62,9 +62,9 @@ const Navbar = () => {
               </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="dark:bg-black mr-4 mt-2">
-                  <DropdownMenuItem className="cursor-pointer">Dashboard</DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
-                  <DropdownMenuItem className="cursor-pointer" onClick={()=> signOut()}>Sign out</DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer"><LayoutDashboardIcon className="mr-2" size={15}/> Dashboard</DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer"><Settings className="mr-2" size={15}/> Settings</DropdownMenuItem>
+                  <DropdownMenuItem className="cursor-pointer" onClick={()=> signOut()}><LogOutIcon className="mr-2" size={15}/>  Sign out</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>

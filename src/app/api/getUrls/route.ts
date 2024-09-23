@@ -9,12 +9,14 @@ export async function POST(request: Request){
     try {
         const {email} = await request.json();
 
-        const user = await UserModel.findOne({email});
+        const user = await UserModel.findOne({email: email});
+        console.log(email);
+        
         
         return Response.json({
             success: true,
             message: "Urls fetched successfully!",
-            data: user?.urls
+            data: user && user.urls
         }, {status: 201})
     } catch (error) {
         return Response.json({

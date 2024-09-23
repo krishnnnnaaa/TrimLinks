@@ -11,7 +11,7 @@ export const authOptions:NextAuthOptions = {
             name: "Credentials",
             credentials: {
                 email: { label: "Email", type: "text"},
-                pasword: { label: "Password", type: "password" }
+                password: { label: "Password", type: "password" }
               },
               async authorize(credentials:any):Promise<any> {
                   await dbConnect()
@@ -51,12 +51,14 @@ export const authOptions:NextAuthOptions = {
             if(token){    
                 session.user._id = token._id;
                 session.user.name = token.name;
+                session.user.email = token.email;
             }
             return session
           },
           async jwt({ token, user }) {
             if(user){
                 token.name = user.name,
+                token.email = user.email,
                 token._id = user._id?.toString();
             }
             return token
