@@ -31,7 +31,7 @@ export async function POST(request: Request) {
       return Response.json({
         success: true,
         message: "Short Url has been generated successfully!",
-        data: newUrl,
+        url: newUrl,
       });
     }
   } catch (error) {

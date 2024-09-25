@@ -4,6 +4,7 @@ import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider";
+import { LinksProvider } from "@/context/LinkProvider";
 
 
 
@@ -41,7 +42,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <LinksProvider>
             {children}
+            </LinksProvider>
           </ThemeProvider>
         <Toaster />
       </body>

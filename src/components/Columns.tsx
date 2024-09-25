@@ -1,7 +1,8 @@
 "use client"
  
-import { ColumnDef } from "@tanstack/react-table"
-import { Link, MoreHorizontal, MoreVertical } from "lucide-react"
+import {CustomTableMeta} from '../types/Columns'
+import { ColumnDef,  } from "@tanstack/react-table"
+import { Link, MoreHorizontal, MoreVertical, Trash2Icon } from "lucide-react"
  
 import { Button } from "@/components/ui/button"
 import {
@@ -12,12 +13,28 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import axios, { AxiosError } from "axios"
+import { ApiResponse } from "@/types/ApiResponse"
+import { useLinks } from '@/context/LinkProvider'
+import { useToast } from '@/hooks/use-toast'
 
 export type Links = {
     id: string,
+    _id: string,
     shortId: string,
     redirectUrl:string,
     createdAt: Date
+}
+
+
+const deleteData = async(email:string, id: string)=>{
+  try {
+    const response = await axios.post('/api/deleteShortId', {email, urlID: id})    
+  } catch (error) {
+    const axiosError = error as AxiosError<ApiResponse>;
+    const errorMsg = axiosError.response?.data.message
+    console.log(errorMsg);
+    }
 }
 
 export const columns: ColumnDef<Links>[] = [
@@ -26,8 +43,7 @@ export const columns: ColumnDef<Links>[] = [
       header: "Short Url",
       cell: ({ row }) => (
         <div className="flex items-center space-x-2">
-          {/* Add your icon or image here */}
-          <Link className="bg-sky-600 p-3 rounded-lg" size={40}/>
+          <Link className="bg-sky-600 p-3 rounded-lg text-white " size={40}/>
           <a href={row.original.shortId} className="text-blue-500 hover:underline">
             {row.original.shortId}
           </a>
@@ -51,7 +67,8 @@ export const columns: ColumnDef<Links>[] = [
 
     {
       id: "share",
-      cell: ({ row }) => {
+      cell: ({ row, table }) => {
+        const useremail = (table.options.meta as CustomTableMeta).useremail
         
    
         return (
@@ -69,7 +86,9 @@ export const columns: ColumnDef<Links>[] = [
                 Copy URL
               </DropdownMenuItem>
               <DropdownMenuItem>Visit Link</DropdownMenuItem>
-              <DropdownMenuItem>Delete</DropdownMenuItem>
+              <DropdownMenuItem onClick={()=> {
+                deleteData(useremail, row.original._id)
+              }}>Delete</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         )

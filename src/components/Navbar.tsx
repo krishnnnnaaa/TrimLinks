@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { LayoutDashboardIcon, LogOutIcon, Moon, Settings, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
+import Link from "next/link";
 
 const Navbar = () => {
   const {setTheme} = useTheme()
@@ -28,7 +29,9 @@ const Navbar = () => {
           <li>TrimLinks</li>
           <li>
             {!session ? (
+              <Link href={'/signin'}>
               <Button>Sign in</Button>
+              </Link>
             ) : (
               <div className="flex items-center space-x-4">
                 <DropdownMenu>
