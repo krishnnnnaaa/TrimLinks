@@ -45,11 +45,12 @@ const Table = () => {
     <div className="container mx-auto py-10 w-full flex flex-col justify-center items-center dark:bg-[#030315] dark:text-white bg-white
      text-[#030315]">
       <h1 className='text-5xl font-semibold mt-10 mb-3 text-[#030315] dark:text-white'>Overview</h1>
-      <p className='text-[#030315] dark:text-white mb-10 text-xl'>Manage Your Links Effortlessly - Track, Copy, and Control with Ease</p>
+      <p className='text-[#030315] dark:text-white mb-10 text-xl md:px-auto px-8 text-center'>Manage Your Links Effortlessly - Track, Copy, and Control with Ease</p>
       <DataTable columns={columns} useremail={email as string} data={Tabledata}/>
-      <div className="w-3/4 mt-4 text-center flex justify-center space-x-2">
+      <div className="w-3/4 pb-5 mt-4 text-center flex justify-center space-x-2">
       <p>Showing {results.initialResult} of {results.finalResult}</p>
-      <Link href={'/dashboard'} className='dark:text-white text-[#030315] underline'>See More <ArrowUpRightFromSquareIcon className="inline" size={18}/></Link>
+      <Link href={'/dashboard'} className='dark:text-white text-[#030315] underline'>See More 
+      <ArrowUpRightFromSquareIcon className="inline" size={18}/></Link>
       </div>
       
     </div>

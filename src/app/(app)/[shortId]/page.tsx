@@ -1,31 +1,50 @@
 'use client'
-import { redirect, useParams, useRouter } from "next/navigation"
+import { useParams, useRouter } from "next/navigation"
 import { useEffect } from "react"
 
-export default async function Page() {
-  const params  = useParams()
+export default function Page() {
+  const params = useParams()
   const router = useRouter()
   const { shortId } = params
-useEffect(() => {
-  const fetchData = async()=> {
-  try {
-    // Making a POST request using the fetch API from the server component
-    const response = await fetch('/api/getShortId', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ shortId: `http://localhost:3000/${shortId}` }),
-    })
+
+  useEffect(() => {
+    // Check if the window object is available (client-side)
+    if (typeof window === 'undefined') return;
+
+    // Safely access localStorage and fetch userId
+    const userIdString = localStorage.getItem('trimlinks-id');
+    if (!userIdString) return;
+
+    // Parse the userId from localStorage
+    const userId = JSON.parse(userIdString);
+    if (!userId || !userId.id) return;
     
-    const resData = await response.json()
-    router.replace(resData.data.redirectUrl)
+    
+    // Define the asynchronous fetch function
+    const fetchData = async () => {
+      try {
+        console.log('s');
+        const response = await fetch('/api/getShortId', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ shortId: `http://localhost:3000/${shortId}`, userId: userId.id }),
+        })
+
+        // Parse the JSON response
+        const resData = await response.json()
+
+        // Check for redirect URL and navigate
+        if (resData?.data?.redirectUrl) {
+          router.replace(resData.data.redirectUrl)
+        }
       } catch (error) {
         console.error('Error fetching redirect URL:', error)
       }
     }
-    fetchData()
-    }, [])
 
-  // return null // Return null since no UI is needed
+    // Call the fetch function
+    fetchData()
+  }, [shortId, router]) // Include dependencies to avoid ESLint warnings
 }

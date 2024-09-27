@@ -1,4 +1,6 @@
 'use client'
+import Footer from '@/components/Footer'
+import Navbar from '@/components/Navbar'
 import { Button } from '@/components/ui/button'
 import { Form, FormControl, FormField, FormItem, FormLabel } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
@@ -23,7 +25,9 @@ const page = () => {
 
     
   return (
-    <div className="container py-6 px-20 w-full flex flex-col
+    <>
+    <Navbar/>
+    <div className="container py-6 md:px-20 px-8 w-full flex flex-col
       dark:bg-[#030315] dark:text-white bg-white
      text-[#030315]">
       <h1 className='text-5xl text-left font-semibold mt-10 mb-3 text-[#030315]
@@ -114,6 +118,8 @@ const page = () => {
             </div>
           </div>
        </div>
+       <Footer/>
+       </>
   )
 }
 

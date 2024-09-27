@@ -1,4 +1,4 @@
-import mongoose, {Schema, Document, Mongoose} from 'mongoose';
+import mongoose, {Schema, Document} from 'mongoose';
 
 
 // Url Interface
@@ -7,6 +7,7 @@ export interface Url extends Document{
     shortId: string,
     redirectUrl: string,
     createdAt: Date,
+    views: number,
 }
 
 
@@ -26,6 +27,11 @@ createdAt:{
     required: true,
     default: new Date()
 },
+views: {
+    type: Number,
+    required: true,
+    default: 0
+}
 })
 
 

@@ -3,14 +3,20 @@ import Table from '@/components/HomePageTable'
 import Tagline from '@/components/Tagline'
 import UrlGenerator from '@/components/UrlGenerator'
 import React from 'react'
+import Navbar from '@/components/Navbar'
+import ComingSoon from '@/components/ComingSoon'
+import Footer from '@/components/Footer'
 
 const page = () => {
   return (
     <div>
+      <Navbar/>
       <UrlGenerator/>
       <Tagline/>
       <Stats/>
       <Table/>
+      <ComingSoon/>
+      <Footer/>
     </div>
   )
 }

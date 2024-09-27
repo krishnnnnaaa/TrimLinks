@@ -21,6 +21,7 @@ export async function POST(request: Request) {
         shortId,
         redirectUrl: url,
         createdAt: new Date(),
+        views: 0
       });
 
       user.urls.push(newUrl as Url);

@@ -33,12 +33,12 @@ const Table = () => {
     }, [session])
     
   return (
-    <div className="container mx-auto py-10 w-full flex flex-col justify-center
+    <div className="container mx-auto min-h-screen py-10 w-full flex flex-col
      items-center dark:bg-[#030315] dark:text-white bg-white
      text-[#030315]">
-      <h1 className='text-5xl font-semibold mt-10 mb-3 text-[#030315]
+      <h1 className='md:text-5xl text-3xl text-center md:text-left font-semibold mt-10 mb-3 text-[#030315]
        dark:text-white'>Manage All Your Links in One Place</h1>
-      <p className='text-[#030315] dark:text-white mb-10 text-xl'>
+      <p className='text-[#030315] dark:text-white mb-10 text-xl md:text-left text-center md:px-0 px-8'>
       View and manage the entire collection of your shortened links</p>
       <DataTable columns={columns} useremail={email as string} data={Tabledata}/>
       

@@ -1,7 +1,7 @@
 "use client";
 
 import { useSession, signOut } from "next-auth/react";
-import React from "react";
+import React, { useEffect } from "react";
 import { User } from "next-auth";
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
@@ -20,12 +20,17 @@ const Navbar = () => {
   const {setTheme} = useTheme()
   const { data: session } = useSession();
   const user: User = session?.user as User;
-  // console.log(user);
+  useEffect(() => {
+    if(session){
+      localStorage.setItem('trimlinks-id', JSON.stringify({id: session.user._id as string}))
+    }
+  }, [session])
+  
 
   return (
-    <div className="dark:bg-black/25 bg-white dark:text-white text-black">
+    <div className="dark:bg-black/25 bg-white dark:text-white text-black md:text-base text-2xl">
       <div>
-        <ul className="flex justify-between items-center p-3 pr-4">
+        <ul className="flex justify-between items-center p-5 md:p-3 md:pr-4">
           <li>TrimLinks</li>
           <li>
             {!session ? (
@@ -34,6 +39,9 @@ const Navbar = () => {
               </Link>
             ) : (
               <div className="flex items-center space-x-4">
+                <Link href={'/workspace'}>
+                <li>Home</li>
+                </Link>
                 <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">

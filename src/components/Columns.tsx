@@ -21,7 +21,8 @@ export type Links = {
     _id: string,
     shortId: string,
     redirectUrl:string,
-    createdAt: Date
+    createdAt: Date,
+    views: string
 }
 
 
@@ -58,10 +59,13 @@ export const columns: ColumnDef<Links>[] = [
       }
     },
     {
+      accessorKey: "views",
+      header: "Views",
+    },
+    {
       accessorKey: "createdAt",
       header: "Created At",
       cell: ({ row }) => {
-        // Format the date here
         const formattedDate = new Date(row.original.createdAt).toLocaleString().split(",")[0];
         return <span>{formattedDate}</span>;
       },
@@ -88,7 +92,6 @@ export const columns: ColumnDef<Links>[] = [
               >
                 Copy URL
               </DropdownMenuItem>
-              <DropdownMenuItem>Visit Link</DropdownMenuItem>
               <DropdownMenuItem onClick={()=> {
                 deleteData(useremail, row.original._id)
               }}>Delete</DropdownMenuItem>

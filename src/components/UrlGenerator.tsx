@@ -74,32 +74,32 @@ useEffect(() => {
   
 
   return (
-    <div className='w-full py-10 flex justify-around items-center dark:bg-[#030315] bg-white dark:text-white text-[#030315]'>
-      <div className='flex flex-col'>
+    <div className='w-full py-10 flex md:flex-row flex-col justify-around items-center dark:bg-[#030315] bg-white dark:text-white text-[#030315]'>
+      <div className='flex flex-col md:p-0 px-5'>
         <div className='w-full my-6'>
-        <span className='text-xl'>Hey Krishna! 👋</span>
+        <span className='md:text-xl text-2xl'>Hey Krishna! 👋</span>
             <h1 className='text-4xl font-bold my-4'>Simplify Your Links</h1>
-            <p className='text-2xl '>Shorten, Share, and Track Your URLs with Ease</p>
+            <p className='md:text-2xl text-[20px]'>Shorten, Share, and Track Your URLs with Ease</p>
         </div>
         <div className='w-full'>
             <div className='flex my-4 space-x-4'>
         {/* <Input type="text" className='py-2' placeholder="Enter the url" /> */}
         <Form {...form}>
             <form onSubmit={form.handleSubmit(setUrls)} className="space-y-6 w-full text-left">
-              <div className='flex space-x-4 w-full'>
+              <div className='flex space-x-4 w-full md:flex-row flex-col'>
             <FormField
           name="redirectUrl"
           control={form.control}
           render={({ field }) => (
-            <FormItem className='w-full'>
+            <FormItem className='w-full '>
               <FormControl>
-                <Input placeholder="Enter the url" {...field}
+                <Input placeholder="Enter the url" className='md:text-base text-xl h-14 md:h-auto mb-6' {...field}
                  />
               </FormControl>
             </FormItem>
           )}
           />
-        <Button disabled={isSubmitting} type='submit'>
+        <Button className='md:w-auto w-full ml-[0px!important] md:ml-auto text-2xl md:text-base h-12 md:h-auto' disabled={isSubmitting} type='submit'>
           {
               isSubmitting ? (
                 <>
@@ -113,9 +113,9 @@ useEffect(() => {
           name="shortId"
           control={form.control}
           render={({ field }) => (
-            <FormItem className='flex space-x-2 items-end justify-center'>
+            <FormItem className='flex space-x-2 md:items-end items-start justify-center'>
               <FormControl>
-                <Input readOnly placeholder="Short url will generate once submit your url" {...field}
+                <Input readOnly placeholder="Short url will generate once submit your url" className='md:text-base text-xl h-14 md:h-auto mb-6' {...field}
                  />
               </FormControl>
               {
