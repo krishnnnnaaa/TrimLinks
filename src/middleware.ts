@@ -7,14 +7,18 @@ import { parse } from "cookie";
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl;
   const cookies = parse(request.headers.get('cookie') || '');
-  const csrfToken = cookies['next-auth.csrf-token'];
+  const token = cookies['next-auth.session-token'];
   
 
-  if (!csrfToken && url.pathname.startsWith("/workspace")) {
+  if (!token && 
+    url.pathname.startsWith("/workspace") ||
+    url.pathname.startsWith("/settings") ||
+    url.pathname.startsWith("/dashboard"))
+   {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
   if (
-    csrfToken &&
+    token &&
     (url.pathname.startsWith("/signin") ||
       url.pathname.startsWith("/signup"))
   ) {
@@ -31,5 +35,7 @@ export const config = {
     "/signin",
     "/signup",
     "/workspace/:path",
+    // '/settings',
+    // '/dashboard'
   ],
 };

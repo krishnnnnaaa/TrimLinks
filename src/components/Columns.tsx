@@ -2,7 +2,7 @@
  
 import {CustomTableMeta} from '../types/Columns'
 import { ColumnDef,  } from "@tanstack/react-table"
-import { Link, MoreHorizontal, MoreVertical, Trash2Icon } from "lucide-react"
+import { ArrowUpRight, ArrowUpRightFromSquare, Link, MoreHorizontal, MoreVertical, Trash2Icon } from "lucide-react"
  
 import { Button } from "@/components/ui/button"
 import {
@@ -15,8 +15,6 @@ import {
 } from "@/components/ui/dropdown-menu"
 import axios, { AxiosError } from "axios"
 import { ApiResponse } from "@/types/ApiResponse"
-import { useLinks } from '@/context/LinkProvider'
-import { useToast } from '@/hooks/use-toast'
 
 export type Links = {
     id: string,
@@ -44,8 +42,9 @@ export const columns: ColumnDef<Links>[] = [
       cell: ({ row }) => (
         <div className="flex items-center space-x-2">
           <Link className="bg-sky-600 p-3 rounded-lg text-white " size={40}/>
-          <a href={row.original.shortId} className="text-blue-500 hover:underline">
+          <a href={row.original.shortId} target='_blank' className="flex items-center text-blue-500 hover:underline">
             {row.original.shortId}
+            <ArrowUpRightFromSquare className='ml-2 text-[#030315] dark:text-white' size={15}/>
           </a>
         </div>
       ),
@@ -53,6 +52,10 @@ export const columns: ColumnDef<Links>[] = [
     {
       accessorKey: "redirectUrl",
       header: "Url",
+      cell: ({row}) => {
+        const concatinatedStr = row.original.redirectUrl
+        return <span>{concatinatedStr.length > 30 ? concatinatedStr.slice(0, 30) + "..." : concatinatedStr}</span>
+      }
     },
     {
       accessorKey: "createdAt",

@@ -65,8 +65,12 @@ const Navbar = () => {
               </Avatar>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="dark:bg-black mr-4 mt-2">
+                  <Link href={'/dashboard'}>
                   <DropdownMenuItem className="cursor-pointer"><LayoutDashboardIcon className="mr-2" size={15}/> Dashboard</DropdownMenuItem>
+                  </Link>
+                  <Link href={'/settings'}>
                   <DropdownMenuItem className="cursor-pointer"><Settings className="mr-2" size={15}/> Settings</DropdownMenuItem>
+                  </Link>
                   <DropdownMenuItem className="cursor-pointer" onClick={()=> signOut()}><LogOutIcon className="mr-2" size={15}/>  Sign out</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>

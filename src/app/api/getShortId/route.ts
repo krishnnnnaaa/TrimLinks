@@ -1,18 +1,13 @@
 import dbConnect from "@/lib/dbConnect";
-import { UrlModel, UserModel } from "@/model/User";
+import { UrlModel } from "@/model/User";
 
 
 export async function POST(request: Request){
     dbConnect()
-
     
     try {
         const {shortId} = await request.json();
-
-        const urlObj = await UrlModel.findById(shortId);
-        console.log(urlObj);
-        
-        
+        const urlObj = await UrlModel.findOne({shortId});        
         return Response.json({
             success: true,
             message: "Url fetched successfully!",

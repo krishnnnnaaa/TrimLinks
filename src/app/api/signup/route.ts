@@ -7,10 +7,9 @@ export async function POST(request: Request) {
   await dbConnect();
 
   try {
-    const { username, email, password } = await request.json();
+    const { firstname, lastname, username, email, password } = await request.json();
 
     const existingUser = await UserModel.findOne({email});
-    console.log(existingUser);
     const token = createTokenGenerator({
       prefixWithoutUnderscore: "userkey",
     });
@@ -28,9 +27,10 @@ export async function POST(request: Request) {
       const verificationToken = token.generateToken();
       const verificationExpiry = new Date();
       verificationExpiry.setHours(verificationExpiry.getHours() + 5);
-    //   console.log(name);
 
       const newUser = new UserModel({
+        firstname,
+        lastname,
         username,
         email,
         password: encryptedPassword,

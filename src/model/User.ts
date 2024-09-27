@@ -32,6 +32,8 @@ createdAt:{
 // User Interface
 
 export interface User extends Document{
+    firstname: string,
+    lastname: string,
     username: string,
     email: string,
     password: string,
@@ -48,6 +50,15 @@ export interface User extends Document{
 // User Schema
 
 const UserSchema:Schema<User> = new Schema({
+
+    firstname:{
+        type: String,
+        required: true
+    },
+    lastname:{
+        type: String,
+        required: true
+    },
     username:{
         type: String,
         required: true

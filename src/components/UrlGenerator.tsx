@@ -31,6 +31,12 @@ const UrlGenerator = () => {
   })
 
   const {setValue} = form
+  
+useEffect(() => {
+  
+  setValue('shortId', linkShortId) 
+
+}, [linkShortId])
 
 
     const setUrls = async(data: any)=>{ 
@@ -38,7 +44,6 @@ const UrlGenerator = () => {
       setIsCopiedToClipboard(false)
       try {
         const response = await axios.post<ApiResponse>('/api/createShortId', {url: data.redirectUrl, email})
-        setValue('shortId', linkShortId) 
         if(response.data.success){
           setLinkShortId(response.data.url?.shortId as string)
           toast({

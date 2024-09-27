@@ -1,5 +1,5 @@
 import Stats from '@/components/Stats'
-import Table from '@/components/Table'
+import Table from '@/components/HomePageTable'
 import Tagline from '@/components/Tagline'
 import UrlGenerator from '@/components/UrlGenerator'
 import React from 'react'

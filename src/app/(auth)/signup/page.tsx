@@ -17,7 +17,6 @@ import _ from 'lodash'
 
 
 const page = () => {
-  const [username, setUsername] = useState('')
   const [usernameMsg, setusernameMsg] = useState('')
   const [isCheckingUsername, setIsCheckingUsername] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -29,6 +28,8 @@ const page = () => {
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
     defaultValues: {
+      firstname: '',
+      lastname: '',
       username: '',
       email: '',
       password: ''
@@ -98,6 +99,33 @@ const page = () => {
           </h1>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
+            <FormField
+          name="firstname"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>First Name</FormLabel>
+              <FormControl>
+                <Input placeholder="firstname" {...field}
+                 />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+            <FormField
+          name="lastname"
+          control={form.control}
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Last Name</FormLabel>
+              <FormControl>
+                <Input placeholder="lastname" {...field}
+
+                 />
+              </FormControl>
+            </FormItem>
+          )}
+        />
             <FormField
           name="username"
           control={form.control}
