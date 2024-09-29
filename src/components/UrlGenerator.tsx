@@ -10,10 +10,6 @@ import { useToast } from '@/hooks/use-toast'
 import { ApiResponse } from '@/types/ApiResponse'
 import { Form, FormControl, FormField, FormItem } from './ui/form'
 import { useSession } from 'next-auth/react'
-import { urlSchema } from '@/schemas/UrlSchema'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { Url } from '@/model/User'
 import { Clipboard, ClipboardCheckIcon, Loader2 } from 'lucide-react'
 
 const UrlGenerator = () => {

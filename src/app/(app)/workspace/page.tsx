@@ -7,7 +7,7 @@ import Navbar from '@/components/Navbar'
 import ComingSoon from '@/components/ComingSoon'
 import Footer from '@/components/Footer'
 
-const page = () => {
+const WorkspacePage = () => {
   return (
     <div>
       <Navbar/>
@@ -21,4 +21,4 @@ const page = () => {
   )
 }
 
-export default page
+export default WorkspacePage

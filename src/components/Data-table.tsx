@@ -15,7 +15,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Loader2Icon } from "lucide-react"
 import {CustomTableMeta} from '../types/Columns'
 
 interface DataTableProps<TData, TValue> {
@@ -36,7 +35,6 @@ export function DataTable<TData, TValue>({
     meta: { useremail} as CustomTableMeta
   })
   
-// console.log(data);
 
   return (
     <>

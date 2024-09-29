@@ -4,6 +4,14 @@ import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt  from 'bcryptjs'
 import { UserModel } from '@/model/User'
 
+
+type CredentialsType = {
+    identifier: string;
+    password: string;
+  };
+
+
+
 export const authOptions:NextAuthOptions = {
     providers: [
         CredentialsProvider({
@@ -13,28 +21,30 @@ export const authOptions:NextAuthOptions = {
                 email: { label: "Email", type: "text"},
                 password: { label: "Password", type: "password" }
               },
-              async authorize(credentials:any):Promise<any> {
+              async authorize(credentials?: { identifier?: string, password: string }):Promise<any> {
                   await dbConnect()
 
                   try {
                     const user = await UserModel.findOne({
                         $or: [
-                            {email: credentials.identifier},
-                            {username: credentials.identifier},
+                            {email: credentials?.identifier},
+                            {username: credentials?.identifier},
                         ]
                     }) 
                     
                     if(!user){
                         throw new Error("User not found with the given credential");
                     }
-                    const isPasswordValid = await bcrypt.compare(credentials.password, user.password)
+                    const isPasswordValid = await bcrypt.compare(credentials?.password as string, user.password)
                     if(isPasswordValid){
                         return user;
                     }else{
                         throw new Error("Invalid Password")
                     }
-                  } catch (error:any) {
-                    throw new Error(error);
+                  } catch (error) {
+                    if(error instanceof Error){
+                        throw new Error(error.message);
+                    }
                   }
               },
         })

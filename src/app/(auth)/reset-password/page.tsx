@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 import emailSentGif from '../../verified.gif'
 import Image from 'next/image'
 
-const page = () => {
+const ResetPasswordEmailPage = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [emailSent, setEmailSent] = useState(false)
     const [email, setEmail] = useState('')
@@ -102,4 +102,4 @@ const page = () => {
   )
 }
 
-export default page
+export default ResetPasswordEmailPage

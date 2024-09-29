@@ -2,7 +2,6 @@
 
 import { useSession, signOut } from "next-auth/react";
 import React, { useEffect } from "react";
-import { User } from "next-auth";
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback } from "@radix-ui/react-avatar";
 import { AvatarImage } from "./ui/avatar";
@@ -21,7 +20,6 @@ import logo from '../app/trimlinks_logo_full-removebg-preview.png'
 const Navbar = () => {
   const {setTheme} = useTheme()
   const { data: session } = useSession();
-  const user: User = session?.user as User;
   useEffect(() => {
     if(session){
       localStorage.setItem('trimlinks-id', JSON.stringify({id: session.user._id as string}))

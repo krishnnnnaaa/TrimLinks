@@ -4,14 +4,11 @@ import { DataTable } from './Data-table'
 import { columns } from './Columns'
 import axios, { AxiosError } from 'axios'
 import { useSession } from 'next-auth/react'
-import { useToast } from '@/hooks/use-toast'
 import { ApiResponse } from '@/types/ApiResponse'
 
 const Table = () => {
     const {data:session} = useSession()
     const [Tabledata, setTableData] = useState([])
-    const [results, setResults] = useState({initialResult: 0, finalResult: 0})
-    const {toast} = useToast()
     
     const email = session?.user.email
     

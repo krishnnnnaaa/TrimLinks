@@ -9,7 +9,7 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 
-const page = () => {
+const SettingsPage = () => {
     const {data:session} = useSession()
     const form = useForm();
     const {setValue} = form;
@@ -123,4 +123,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SettingsPage

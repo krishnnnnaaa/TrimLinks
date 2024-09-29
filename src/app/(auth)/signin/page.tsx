@@ -1,24 +1,20 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
-import { useCallback, useEffect, useState } from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import * as z from "zod"
 import { useToast } from "@/hooks/use-toast"
 import { useRouter } from "next/navigation"
-import { signUpSchema } from "@/schemas/signUpSchema"
-import axios, { AxiosError } from 'axios'
-import { ApiResponse } from "@/types/ApiResponse"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { Loader2 } from "lucide-react"
-import _ from 'lodash'
 import { signInSchema } from "@/schemas/signInSchema"
 import { signIn } from "next-auth/react"
 
 
-const page = () => {
+const SigninPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const {toast} = useToast()
   const router = useRouter()
@@ -34,11 +30,13 @@ const page = () => {
   })
 
   const onSubmit = async (data:z.infer<typeof signInSchema>)=> {
+    setIsSubmitting(true)
     const response = await signIn('credentials', {
       redirect: false,
       identifier: data.identifier,
       password: data.password
     })
+    setIsSubmitting(false)
     
 
     if(response?.error){
@@ -48,6 +46,7 @@ const page = () => {
         variant: "destructive"
       })
     }else if(response?.url){
+
       router.replace('/workspace')
     }
   }
@@ -116,4 +115,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SigninPage

@@ -1,6 +1,6 @@
 import { sendPasswordResetEmail } from "@/backer/passwordresetmail";
 import dbConnect from "@/lib/dbConnect";
-import { User, UserModel } from "@/model/User";
+import { UserModel } from "@/model/User";
 import { createTokenGenerator } from "cybertoken";
 
 

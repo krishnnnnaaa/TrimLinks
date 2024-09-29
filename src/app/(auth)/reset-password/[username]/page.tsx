@@ -4,14 +4,14 @@ import { Input } from '@/components/ui/input'
 import { useToast } from '@/hooks/use-toast'
 import { ApiResponse } from '@/types/ApiResponse'
 import axios, { AxiosError } from 'axios'
-import { FingerprintIcon, Loader2, ShieldEllipsisIcon } from 'lucide-react'
+import { Loader2, ShieldEllipsisIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useParams, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
 import passwordResetDoneGif from '../../../verified.gif'
 import Image from 'next/image'
 
-const page = () => {
+const ResetPasswordPage = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [isPasswordResetDone, setIsPasswordResetDone] = useState(false)
     const [password, setPassword] = useState('')
@@ -128,4 +128,4 @@ const page = () => {
   )
 }
 
-export default page
+export default ResetPasswordPage

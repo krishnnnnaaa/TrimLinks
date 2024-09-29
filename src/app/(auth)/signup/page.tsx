@@ -1,7 +1,7 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
-import { useCallback, useEffect, useState } from "react"
+import { useCallback, useState } from "react"
 import { useForm } from "react-hook-form"
 import { Input } from "@/components/ui/input"
 import * as z from "zod"
@@ -12,11 +12,11 @@ import axios, { AxiosError } from 'axios'
 import { ApiResponse } from "@/types/ApiResponse"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
-import { Loader2, User2 } from "lucide-react"
+import { Loader2} from "lucide-react"
 import _ from 'lodash'
 
 
-const page = () => {
+const SignupPage = () => {
   const [usernameMsg, setusernameMsg] = useState('')
   const [isCheckingUsername, setIsCheckingUsername] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -36,7 +36,6 @@ const page = () => {
     }
   })
 
-  // useEffect(() => {
     const checkingUser = async (debouncedUsername: string)=> {
       if(debouncedUsername){
         setIsCheckingUsername(true)
@@ -54,8 +53,6 @@ const page = () => {
         }
       }
     }
-    // checkingUser()
-  // }, [])
 
   const onSubmit = async (data:z.infer<typeof signUpSchema>)=> {
     setIsSubmitting(true)
@@ -67,7 +64,7 @@ const page = () => {
           title: "Success",
           description: response.data.message
         })
-        router.replace('/')
+        router.replace('/signin')
       }
     } catch (error) {
      console.error("Error in signup", error) 
@@ -99,7 +96,7 @@ const page = () => {
           </h1>
           <div>
             <p className="text-4xl font-bold text-left">Hi there 👋</p>
-            <p className="text-lg text-gray-400  text-left mb-8">Let's get started.</p>
+            <p className="text-lg text-gray-400  text-left mb-8">Let&apos;s get started.</p>
           </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
@@ -204,4 +201,4 @@ const page = () => {
   )
 }
 
-export default page
+export default SignupPage

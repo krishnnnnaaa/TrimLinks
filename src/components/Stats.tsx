@@ -6,10 +6,6 @@ import { BarChart2Icon, Eye, Link2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
-// interface LinksType {
-//   links: Url[];
-//   setLinks: React.Dispatch<React.SetStateAction<Url[]>>;
-// }
 
 const Stats = () => {
   const [links, setLinks] = useState<Url[]>([])
@@ -18,8 +14,6 @@ const Stats = () => {
   const [topLink, setTopLink] = useState<Url>()
   const {data:session} = useSession()
   const email = session?.user.email
-  // console.log(linksStats);
-  
 
   
   const fetchData = async()=>{            

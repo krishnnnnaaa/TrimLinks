@@ -2,15 +2,13 @@
  
 import {CustomTableMeta} from '../types/Columns'
 import { ColumnDef,  } from "@tanstack/react-table"
-import { ArrowUpRight, ArrowUpRightFromSquare, Link, MoreHorizontal, MoreVertical, Trash2Icon } from "lucide-react"
+import { ArrowUpRightFromSquare, Link, MoreVertical } from "lucide-react"
  
 import { Button } from "@/components/ui/button"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import axios, { AxiosError } from "axios"
@@ -28,7 +26,7 @@ export type Links = {
 
 const deleteData = async(email:string, id: string)=>{
   try {
-    const response = await axios.post('/api/deleteShortId', {email, urlID: id})    
+    await axios.post('/api/deleteShortId', {email, urlID: id})    
   } catch (error) {
     const axiosError = error as AxiosError<ApiResponse>;
     const errorMsg = axiosError.response?.data.message
