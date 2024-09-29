@@ -15,6 +15,8 @@ import {
 import { LayoutDashboardIcon, LogOutIcon, Moon, Settings, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import Image from "next/image";
+import logo from '../app/trimlinks_logo_full-removebg-preview.png'
 
 const Navbar = () => {
   const {setTheme} = useTheme()
@@ -31,7 +33,9 @@ const Navbar = () => {
     <div className="dark:bg-black/25 bg-white dark:text-white text-black md:text-base text-2xl">
       <div>
         <ul className="flex justify-between items-center p-5 md:p-3 md:pr-4">
-          <li>TrimLinks</li>
+          <li>
+            <Image src={logo} alt="logo" width={100} height={100}/>
+          </li>
           <li>
             {!session ? (
               <Link href={'/signin'}>
@@ -40,7 +44,7 @@ const Navbar = () => {
             ) : (
               <div className="flex items-center space-x-4">
                 <Link href={'/workspace'}>
-                <li>Home</li>
+                <li className="md:text-base text-xl">Home</li>
                 </Link>
                 <DropdownMenu>
       <DropdownMenuTrigger asChild>

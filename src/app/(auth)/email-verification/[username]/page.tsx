@@ -7,6 +7,7 @@ import verifiedGif from "../../../verified.gif";
 import unverified from "../../../notverified-removebg.png";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
+import Navbar from "@/components/Navbar";
 
 const page = () => {
   const params = useParams();
@@ -98,10 +99,10 @@ const page = () => {
       {isError && errorMsg !== "User email is already verified!" && (
         <div className="w-full min-h-screen flex flex-col justify-center items-center">
           <h1 className="text-8xl font-bold">Uh Oh!</h1>
-          <h3 className="text-4xl font-semibold mt-4 mb-2">
+          <h3 className="text-4xl font-semibold mt-4 mb-2 text-center">
             Your email address couldn't be verified.
           </h3>
-          <p className="text-gray-500">
+          <p className="text-gray-500 md:px-0 px-6 text-center">
             We couldn't verify your email. This might happen if the link has
             expired or was incorrect.{" "}
           </p>

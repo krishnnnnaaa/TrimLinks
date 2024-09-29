@@ -1,3 +1,4 @@
+import { Cairo } from "next/font/google";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -9,6 +10,9 @@ const config: Config = {
   ],
   theme: {
   	extend: {
+		fontFamily: {
+			sans: ['var(--font-roboto)']
+		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',

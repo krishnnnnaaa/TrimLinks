@@ -1,23 +1,17 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import {Cairo_Play, Roboto} from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/context/AuthProvider";
 import { Toaster } from "@/components/ui/toaster"
 import { ThemeProvider } from "@/components/theme-provider";
 import { LinksProvider } from "@/context/LinkProvider";
 
-
-
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const roboto = Roboto({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+  weight: "400"
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -34,7 +28,7 @@ export default function RootLayout({
       <AuthProvider>
 
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${roboto.variable} antialiased font-sans`}
         >
          <ThemeProvider
             attribute="class"

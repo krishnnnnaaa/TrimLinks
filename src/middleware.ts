@@ -11,9 +11,7 @@ export async function middleware(request: NextRequest) {
   
 
   if (!token && 
-    url.pathname.startsWith("/workspace") ||
-    url.pathname.startsWith("/settings") ||
-    url.pathname.startsWith("/dashboard"))
+    url.pathname.startsWith("/workspace"))
    {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
@@ -31,11 +29,8 @@ export async function middleware(request: NextRequest) {
 // See "Matching Paths" below to learn more
 export const config = {
   matcher: [
-    // '/',
     "/signin",
     "/signup",
     "/workspace/:path",
-    // '/settings',
-    // '/dashboard'
   ],
 };

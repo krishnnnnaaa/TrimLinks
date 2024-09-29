@@ -12,7 +12,7 @@ import axios, { AxiosError } from 'axios'
 import { ApiResponse } from "@/types/ApiResponse"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
-import { Loader2 } from "lucide-react"
+import { Loader2, User2 } from "lucide-react"
 import _ from 'lodash'
 
 
@@ -91,23 +91,29 @@ const page = () => {
     _.debounce((debouncedUsername: string) => checkingUser(debouncedUsername), 500), []);
   
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 text-black">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-[#030315] text-white">
+      <div className="w-full max-w-md p-8 space-y-8 rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Join TrimLinks
+        <h1 className="text-2xl font-semibold tracking-tight text-left mb-8">
+            TrimLinks
           </h1>
+          <div>
+            <p className="text-4xl font-bold text-left">Hi there 👋</p>
+            <p className="text-lg text-gray-400  text-left mb-8">Let's get started.</p>
+          </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
+
+            <div className='flex space-x-4'>
+
             <FormField
           name="firstname"
           control={form.control}
           render={({ field }) => (
-            <FormItem>
+            <FormItem className='w-full'>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input placeholder="firstname" {...field}
-                 />
+                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., John" {...field}/>
               </FormControl>
             </FormItem>
           )}
@@ -116,16 +122,15 @@ const page = () => {
           name="lastname"
           control={form.control}
           render={({ field }) => (
-            <FormItem>
+              <FormItem className='w-full'>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input placeholder="lastname" {...field}
-
-                 />
+                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., Doe" {...field}/>
               </FormControl>
             </FormItem>
           )}
-        />
+          />
+          </div>
             <FormField
           name="username"
           control={form.control}
@@ -133,7 +138,7 @@ const page = () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input placeholder="username" {...field}
+                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., johndoe592" {...field}
                 onChange={(e)=> {
                   field.onChange(e)
                   debouncedResults(e.target.value)
@@ -155,7 +160,7 @@ const page = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="email" {...field}
+                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., example@gmail.com" {...field}
                  />
               </FormControl>
             </FormItem>
@@ -168,26 +173,26 @@ const page = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="password" {...field}
+                <Input className='md:h-auto md:text-base h-12 text-xl' type="password" placeholder="password" {...field}
                  />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" className='md:h-auto md:text-base h-12 text-xl w-full' disabled={isSubmitting}>
           {
             isSubmitting ? (
               <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
               </>
-            ) : 'Signup'
+            ) : 'Get Started'
           }
         </Button>
             </form>
           </Form>
           <div className="text-center mt-4">
-            <p>
-              Already a member?
+            <p className="md:text-base text-lg text-gray-400">
+              Already a member? {"    "}
               <Link href={'/signin'} className="text-blue-600 hover:text-blue-800">Sign in</Link>
             </p>
 

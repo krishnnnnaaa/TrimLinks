@@ -12,7 +12,7 @@ export async function sendPasswordResetEmail(
             from: "onboarding@resend.dev",
             to: email,
             subject: 'TrimLinks Accound Passeword Reset',
-            react: ResetPasswordEmail({name, token}),
+            react: ResetPasswordEmail({name, token, email}),
           });
 
         return {

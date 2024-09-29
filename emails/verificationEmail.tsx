@@ -30,10 +30,10 @@ export const VerificationEmail = ({
       <Body style={main}>
         <Container style={container}>
           <Img
-            src={`${baseUrl}/static/dropbox-logo.png`}
+            src={`${baseUrl}/static/trimlinks-logo.png`}
             width="40"
             height="33"
-            alt="Dropbox"
+            alt="trimlinks"
           />
           <Section>
             <Text style={text}>Hi {username},</Text>

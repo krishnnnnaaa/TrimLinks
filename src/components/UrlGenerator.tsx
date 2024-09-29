@@ -86,7 +86,7 @@ useEffect(() => {
         {/* <Input type="text" className='py-2' placeholder="Enter the url" /> */}
         <Form {...form}>
             <form onSubmit={form.handleSubmit(setUrls)} className="space-y-6 w-full text-left">
-              <div className='flex space-x-4 w-full md:flex-row flex-col'>
+              <div className='flex md:space-x-4 space-x-0 w-full md:flex-row flex-col'>
             <FormField
           name="redirectUrl"
           control={form.control}
@@ -99,7 +99,7 @@ useEffect(() => {
             </FormItem>
           )}
           />
-        <Button className='md:w-auto w-full ml-[0px!important] md:ml-auto text-2xl md:text-base h-12 md:h-auto' disabled={isSubmitting} type='submit'>
+        <Button className='md:w-auto w-full text-2xl md:text-base h-12 md:h-9' disabled={isSubmitting} type='submit'>
           {
               isSubmitting ? (
                 <>
@@ -113,16 +113,16 @@ useEffect(() => {
           name="shortId"
           control={form.control}
           render={({ field }) => (
-            <FormItem className='flex space-x-2 md:items-end items-start justify-center'>
+            <FormItem className='flex space-x-2  items-start justify-center'>
               <FormControl>
                 <Input readOnly placeholder="Short url will generate once submit your url" className='md:text-base text-xl h-14 md:h-auto mb-6' {...field}
                  />
               </FormControl>
               {
                 isCopiedToClipboard ? (
-                  <ClipboardCheckIcon className='bg-white p-2 rounded-lg text-black' size={40}/>
+                  <ClipboardCheckIcon className='bg-white p-2 rounded-lg md:mt-[0!important] text-black' size={40}/>
                 ) : (
-                  <Clipboard onClick={copyToClipboard} className='bg-white p-2 rounded-lg text-black' size={40}/>
+                  <Clipboard onClick={copyToClipboard} className='bg-white p-2 md:mt-[0!important] rounded-lg text-black' size={40}/>
                 )
               }
             </FormItem>

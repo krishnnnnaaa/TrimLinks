@@ -32,7 +32,7 @@ const page = () => {
      text-[#030315]">
       <h1 className='text-5xl text-left font-semibold mt-10 mb-3 text-[#030315]
        dark:text-white'>Settings</h1>
-       <div className='w-2/5 my-10'>
+       <div className='md:w-2/5 w-full my-10'>
        <Form {...form}>
             <form className="space-y-6 text-left">
                 <div className='flex space-x-4'>
@@ -44,7 +44,7 @@ const page = () => {
             <FormItem className='w-full'>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input disabled placeholder="e.g., John" {...field}/>
+                <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., John" {...field}/>
               </FormControl>
             </FormItem>
           )}
@@ -56,7 +56,7 @@ const page = () => {
               <FormItem className='w-full'>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input disabled placeholder="e.g., Doe" {...field}/>
+                <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., Doe" {...field}/>
               </FormControl>
             </FormItem>
           )}
@@ -69,7 +69,7 @@ const page = () => {
               <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input disabled placeholder="e.g., example@gmail.com" {...field}
+                <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., example@gmail.com" {...field}
                  />
               </FormControl>
             </FormItem>
@@ -82,7 +82,7 @@ const page = () => {
           <FormItem>
             <FormLabel>Username</FormLabel>
             <FormControl>
-              <Input disabled placeholder="e.g., johndoe592" {...field}/>
+              <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., johndoe592" {...field}/>
             </FormControl>
           </FormItem>
         )}
@@ -95,20 +95,20 @@ const page = () => {
             <FormItem className='w-full'>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input disabled type="password" placeholder="password" {...field}
+                <Input className='md:h-auto md:text-base h-12 text-xl' disabled type="password" placeholder="password" {...field}
                  />
               </FormControl>
             </FormItem>
           )}
           />
           <Link href={'/reset-password'}>
-          <Button className='bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white'>Reset Password</Button>
+          <Button className='bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white md:h-auto md:text-base h-12 text-xl'>Reset Password</Button>
           </Link>
           </div>
             </form>
           </Form>
        </div>
-          <div className='w-3/5 border-red-700 border-2 rounded-lg my-8 py-2 px-8'>
+          <div className='w-full md:w-3/5 border-red-700 border-2 rounded-lg my-8 py-2 px-8'>
             <div className='my-4'>
               <h1 className='text-3xl font-semibold my-2'>Danger Zone</h1>
               <p>Once you delete your account, there is no going back. Please be certain.</p>

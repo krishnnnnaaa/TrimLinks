@@ -53,12 +53,15 @@ const page = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 text-black">
-      <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <div className="flex justify-center items-center min-h-screen bg-[#030315] text-white">
+      <div className="w-full max-w-md p-8 space-y-8 rounded-lg shadow-md">
         <div className="text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
-            Join TrimLinks
+          <h1 className="text-2xl font-semibold tracking-tight text-left mb-8">
+            TrimLinks
           </h1>
+          <div>
+            <p className="text-4xl font-bold text-left mb-6">Welcome Again! 🔥</p>
+          </div>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 text-left">
             <FormField
@@ -68,7 +71,7 @@ const page = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="email" {...field}
+                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="email" {...field}
                  />
               </FormControl>
             </FormItem>
@@ -81,27 +84,27 @@ const page = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="password" {...field}
+                <Input className='md:h-auto md:text-base h-12 text-xl' type="password" placeholder="password" {...field}
                  />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button type="submit" disabled={isSubmitting}>
+        <Button className='md:h-auto md:text-base h-12 text-xl w-full' type="submit" disabled={isSubmitting}>
           {
             isSubmitting ? (
               <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin"/>
               <span>Please wait...</span>
               </>
-            ) : 'Signup'
+            ) : 'Signin'
           }
         </Button>
             </form>
           </Form>
           <div className="text-center mt-4">
-            <p>
-              Don&apos;t have an account?
+            <p className="md:text-base text-lg text-gray-400">
+              Don&apos;t have an account? {"     "}
               <Link href={'/signup'} className="text-blue-600 hover:text-blue-800">Register</Link>
             </p>
 

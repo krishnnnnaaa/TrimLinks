@@ -7,9 +7,11 @@ export async function POST(request:Request){
     await dbConnect()
 
     try {
-        const {email, password, resetToken} = await request.json()
-        const user = await UserModel.findOne({email, passwordResetToken: resetToken, passwordResetTokenExpiry: { $gt: new Date()}})
-
+        const {email, password, token} = await request.json()
+        
+        const user = await UserModel.findOne({email, passwordResetToken: token})
+        console.log(user);
+        
         if(!user){
             return Response.json({
                 success: false,

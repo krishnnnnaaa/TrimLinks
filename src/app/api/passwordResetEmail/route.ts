@@ -7,14 +7,9 @@ import { createTokenGenerator } from "cybertoken";
 export async function POST(request:Request){
     await dbConnect();
 
-    const {email} = await request.json();
-    
-    console.log(email); 
-
     try {
+    const {email} = await request.json();
     const user = await UserModel.findOne({email});
-    console.log(user);
-    
     
     
     if(!user){
@@ -30,10 +25,11 @@ export async function POST(request:Request){
     })
 
     
-    const resetPasswordToken = token.generateToken();
+    
+    const resetPasswordToken = token.generateToken().toLocaleLowerCase();
     const resetPasswordTokenExpiry = new Date();
     resetPasswordTokenExpiry.setHours(resetPasswordTokenExpiry.getHours() + 2);
-
+    
     user.passwordResetToken = resetPasswordToken;
     user.passwordResetTokenExpiry = resetPasswordTokenExpiry;
 
@@ -45,6 +41,7 @@ export async function POST(request:Request){
         user.username,
         resetPasswordToken
       );
+      
 
       if (!passwordResetMail.success) {
         return Response.json(
@@ -57,7 +54,7 @@ export async function POST(request:Request){
       }
 
     return Response.json({
-        success: false,
+        success: true,
         message: "Password Reset mail successfully sent!."
     } , {status: 201})
 
@@ -65,7 +62,7 @@ export async function POST(request:Request){
     } catch (error) {
         return Response.json({
             success: false,
-            message: "Error in sending Password Reset mail."
+            message: "Error in sending Password Reset mail.", error
         } , {status: 500})
     }
 }
