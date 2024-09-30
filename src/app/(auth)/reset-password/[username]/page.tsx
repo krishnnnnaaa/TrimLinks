@@ -105,7 +105,7 @@ const ResetPasswordPage = () => {
                     <label htmlFor="confirm-email">
                         Confirm Password
                     </label>
-                        <Input onChange={(e)=> setConfirmPassword(e.target.value)} placeholder='Confirm new Password' className='md:h-auto md:text-base h-10 text-lh' type="password" id='confirm-email' />
+                        <Input onChange={(e)=> setConfirmPassword(e.target.value)} placeholder='Confirm new Password' className='md:h-auto md:text-base h-10 text-lg' type="password" id='confirm-email' />
                 </div>
                 <div>
                 <Button type="submit" onClick={resetPassword} className='md:h-auto md:text-base h-10 text-lg w-full' disabled={isLoading}>

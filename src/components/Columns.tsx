@@ -38,15 +38,19 @@ export const columns: ColumnDef<Links>[] = [
     {
       accessorKey: "shortId",
       header: "Short Url",
-      cell: ({ row }) => (
+      cell: ({ row }) => {
+            const concatinatedUrl = row.original.shortId
+            return (
         <div className="flex items-center space-x-2">
           <Link className="bg-sky-600 p-3 rounded-lg text-white " size={40}/>
           <a href={row.original.shortId} target='_blank' className="flex items-center text-blue-500 hover:underline">
-            {row.original.shortId}
+            {/* {row.original.shortId} */}
+        <span>{concatinatedUrl.length > 25 ? concatinatedUrl.slice(0, 30) + "..." : concatinatedUrl}</span>
             <ArrowUpRightFromSquare className='ml-2 text-[#030315] dark:text-white' size={15}/>
           </a>
         </div>
-      ),
+            )
+    }
     },
     {
       accessorKey: "redirectUrl",
