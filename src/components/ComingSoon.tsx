@@ -15,7 +15,7 @@ const QrCodeComponent = () => {
         {/* URL below the QR Code */}
         <div className="flex justify-center mt-2">
           <span className="bg-white text-black px-3 -m-8 py-1 text-xl md:text-sm">
-          trimlinks.vercel.app/1fpsBG
+          trim-links.vercel.app/1fpsBG
           </span>
         </div>
       </div>

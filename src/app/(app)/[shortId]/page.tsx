@@ -23,13 +23,12 @@ export default function Page() {
     // Define the asynchronous fetch function
     const fetchData = async () => {
       try {
-        console.log('s');
         const response = await fetch('/api/getShortId', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ shortId: `http://localhost:3000/${shortId}`, userId: userId.id }),
+          body: JSON.stringify({ shortId: `https://trim-links.vercel.app/${shortId}`, userId: userId.id }),
         })
 
         // Parse the JSON response
