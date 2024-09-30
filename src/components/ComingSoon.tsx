@@ -23,7 +23,7 @@ const QrCodeComponent = () => {
       {/* Text Content */}
       <div className="flex flex-col md:items-start items-center md:ml-6 text-[#030315] md:mt-o mt-8 ml-0 dark:text-white">
         <h1 className="text-3xl font-bold">Generate Qr Code</h1>
-        <p className="text-lg mt-2">Convert your Url into a QR Code</p>
+        <p className="text-lg mt-2 text-center">Convert your Url into a QR Code</p>
         <button className="dark:text-[#030315] dark:bg-white bg-[#030315] text-white py-2 px-4 rounded-lg font-semibold mt-6 hover:bg-gray-800">
           Coming Soon
         </button>
