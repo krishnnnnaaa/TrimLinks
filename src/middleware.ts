@@ -6,7 +6,7 @@ import { parse } from "cookie";
 export async function middleware(request: NextRequest) {
   const url = request.nextUrl;
   const cookies = parse(request.headers.get('cookie') || '');
-  const token = cookies['next-auth.session-token'];
+  const token = cookies['__Secure-next-auth.session-token'];
   
 
   if (!token && 
