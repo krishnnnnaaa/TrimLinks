@@ -110,7 +110,7 @@ const SignupPage = () => {
             <FormItem className='w-full'>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., John" {...field}/>
+                <Input className='md:h-auto md:text-base h-10 text-lg' placeholder="e.g., John" {...field}/>
               </FormControl>
             </FormItem>
           )}
@@ -122,7 +122,7 @@ const SignupPage = () => {
               <FormItem className='w-full'>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., Doe" {...field}/>
+                <Input className='md:h-auto md:text-base h-10 text-lg' placeholder="e.g., Doe" {...field}/>
               </FormControl>
             </FormItem>
           )}
@@ -135,7 +135,7 @@ const SignupPage = () => {
             <FormItem>
               <FormLabel>Username</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., johndoe592" {...field}
+                <Input className='md:h-auto md:text-base h-10 text-lg' placeholder="e.g., johndoe592" {...field}
                 onChange={(e)=> {
                   field.onChange(e)
                   debouncedResults(e.target.value)
@@ -157,7 +157,7 @@ const SignupPage = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="e.g., example@gmail.com" {...field}
+                <Input className='md:h-auto md:text-base h-10 text-lg' placeholder="e.g., example@gmail.com" {...field}
                  />
               </FormControl>
             </FormItem>
@@ -170,13 +170,13 @@ const SignupPage = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' type="password" placeholder="password" {...field}
+                <Input className='md:h-auto md:text-base h-10 text-lg' type="password" placeholder="password" {...field}
                  />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button type="submit" className='md:h-auto md:text-base h-12 text-xl w-full' disabled={isSubmitting}>
+        <Button type="submit" className='md:h-auto md:text-base h-10 text-lg w-full' disabled={isSubmitting}>
           {
             isSubmitting ? (
               <>

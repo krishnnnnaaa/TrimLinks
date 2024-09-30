@@ -30,7 +30,7 @@ const SettingsPage = () => {
     <div className="container py-6 md:px-20 px-8 w-full flex flex-col
       dark:bg-[#030315] dark:text-white bg-white
      text-[#030315]">
-      <h1 className='text-5xl text-left font-semibold mt-10 mb-3 text-[#030315]
+      <h1 className='text-3xl text-left font-semibold mt-6 mb-3 text-[#030315]
        dark:text-white'>Settings</h1>
        <div className='md:w-2/5 w-full my-10'>
        <Form {...form}>
@@ -44,7 +44,7 @@ const SettingsPage = () => {
             <FormItem className='w-full'>
               <FormLabel>First Name</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., John" {...field}/>
+                <Input className='md:h-auto md:text-base h-10 text-lg' disabled placeholder="e.g., John" {...field}/>
               </FormControl>
             </FormItem>
           )}
@@ -56,7 +56,7 @@ const SettingsPage = () => {
               <FormItem className='w-full'>
               <FormLabel>Last Name</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., Doe" {...field}/>
+              <Input className='md:h-auto md:text-base h-10 text-lg' disabled placeholder="e.g., Doe" {...field}/>
               </FormControl>
             </FormItem>
           )}
@@ -69,7 +69,7 @@ const SettingsPage = () => {
               <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., example@gmail.com" {...field}
+              <Input className='md:h-auto md:text-base h-10 text-lg'  disabled placeholder="e.g., example@gmail.com" {...field}
                  />
               </FormControl>
             </FormItem>
@@ -82,7 +82,7 @@ const SettingsPage = () => {
           <FormItem>
             <FormLabel>Username</FormLabel>
             <FormControl>
-              <Input className='md:h-auto md:text-base h-12 text-xl' disabled placeholder="e.g., johndoe592" {...field}/>
+            <Input className='md:h-auto md:text-base h-10 text-lg' disabled placeholder="e.g., johndoe592" {...field}/>
             </FormControl>
           </FormItem>
         )}
@@ -95,14 +95,14 @@ const SettingsPage = () => {
             <FormItem className='w-full'>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' disabled type="password" placeholder="password" {...field}
+              <Input className='md:h-auto md:text-base h-10 text-lg' disabled type="password" placeholder="password" {...field}
                  />
               </FormControl>
             </FormItem>
           )}
           />
           <Link href={'/reset-password'}>
-          <Button className='bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white md:h-auto md:text-base h-12 text-xl'>Reset Password</Button>
+          <Button className='bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white md:h-auto md:text-base h-10 text-lg'>Reset Password</Button>
           </Link>
           </div>
             </form>
@@ -110,8 +110,8 @@ const SettingsPage = () => {
        </div>
           <div className='w-full md:w-3/5 border-red-700 border-2 rounded-lg my-8 py-2 px-8'>
             <div className='my-4'>
-              <h1 className='text-3xl font-semibold my-2'>Danger Zone</h1>
-              <p>Once you delete your account, there is no going back. Please be certain.</p>
+              <h1 className='text-2xl font-semibold my-2'>Danger Zone</h1>
+              <p className='md:text-base text-sm'>Once you delete your account, there is no going back. Please be certain.</p>
             </div>
             <div className='py-2'>
               <Button className='bg-red-700 hover:bg-red-800 px-6 py-2 rounded-lg text-white'>Delete Account</Button>

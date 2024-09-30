@@ -70,7 +70,7 @@ const SigninPage = () => {
             <FormItem>
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' placeholder="email" {...field}
+                <Input className='md:h-auto md:text-base h-10 text-lg' placeholder="email" {...field}
                  />
               </FormControl>
             </FormItem>
@@ -83,13 +83,13 @@ const SigninPage = () => {
             <FormItem>
               <FormLabel>Password</FormLabel>
               <FormControl>
-                <Input className='md:h-auto md:text-base h-12 text-xl' type="password" placeholder="password" {...field}
+                <Input className='md:h-auto md:text-base h-10 text-lg' type="password" placeholder="password" {...field}
                  />
               </FormControl>
             </FormItem>
           )}
         />
-        <Button className='md:h-auto md:text-base h-12 text-xl w-full' type="submit" disabled={isSubmitting}>
+        <Button className='md:h-auto md:text-base h-10 text-lg w-full' type="submit" disabled={isSubmitting}>
           {
             isSubmitting ? (
               <>

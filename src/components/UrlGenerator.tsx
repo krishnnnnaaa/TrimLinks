@@ -73,9 +73,9 @@ useEffect(() => {
     <div className='w-full py-10 flex md:flex-row flex-col justify-around items-center dark:bg-[#030315] bg-white dark:text-white text-[#030315]'>
       <div className='flex flex-col md:p-0 px-5'>
         <div className='w-full my-6'>
-        <span className='md:text-xl text-2xl'>Hey Krishna! 👋</span>
-            <h1 className='text-4xl font-bold my-4'>Simplify Your Links</h1>
-            <p className='md:text-2xl text-[20px]'>Shorten, Share, and Track Your URLs with Ease</p>
+        <span className='md:text-xl text-xl'>Hey {session?.user.firstname} 👋</span>
+            <h1 className='md:text-4xl text-2xl font-bold my-4'>Simplify Your Links</h1>
+            <p className='md:text-2xl text-base'>Shorten, Share, and Track Your URLs with Ease</p>
         </div>
         <div className='w-full'>
             <div className='flex my-4 space-x-4'>
@@ -89,13 +89,13 @@ useEffect(() => {
           render={({ field }) => (
             <FormItem className='w-full '>
               <FormControl>
-                <Input placeholder="Enter the url" className='md:text-base text-xl h-14 md:h-auto mb-6' {...field}
+                <Input placeholder="Enter the url" className='md:text-base text-lg h-10 md:h-auto mb-6' {...field}
                  />
               </FormControl>
             </FormItem>
           )}
           />
-        <Button className='md:w-auto w-full text-2xl md:text-base h-12 md:h-9' disabled={isSubmitting} type='submit'>
+        <Button className='md:w-auto w-full text-lg md:text-base h-10 md:h-9' disabled={isSubmitting} type='submit'>
           {
               isSubmitting ? (
                 <>
@@ -111,14 +111,16 @@ useEffect(() => {
           render={({ field }) => (
             <FormItem className='flex space-x-2  items-start justify-center'>
               <FormControl>
-                <Input readOnly placeholder="Short url will generate once submit your url" className='md:text-base text-xl h-14 md:h-auto mb-6' {...field}
+                <Input readOnly placeholder="Short url will generate once submit your url" 
+                className='md:text-base text-lg h-10 md:h-auto mb-6' {...field}
                  />
               </FormControl>
               {
                 isCopiedToClipboard ? (
-                  <ClipboardCheckIcon className='bg-white p-2 rounded-lg md:mt-[0!important] text-black' size={40}/>
+                  <ClipboardCheckIcon className='bg-white p-2 rounded-lg mt-[0!important] text-black' size={40}/>
                 ) : (
-                  <Clipboard onClick={copyToClipboard} className='bg-white p-2 md:mt-[0!important] rounded-lg text-black' size={40}/>
+                  <Clipboard onClick={copyToClipboard} className='bg-white p-2 mt-[0!important] 
+                  rounded-lg text-black' size={40}/>
                 )
               }
             </FormItem>

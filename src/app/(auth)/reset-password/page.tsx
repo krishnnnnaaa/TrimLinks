@@ -82,7 +82,7 @@ const ResetPasswordEmailPage = () => {
                         <Input onChange={(e)=> setEmail(e.target.value)} placeholder='Enter your email' className='md:h-auto md:text-base h-12 text-xl' type="email" id='email' />
                 </div>
                 <div>
-                    <Button className='md:h-auto md:text-base h-12 mt-6 text-xl w-full' onClick={sendResetInstruction}>
+                    <Button className='md:h-auto md:text-base h-10 mt-6 text-lg w-full' onClick={sendResetInstruction}>
                     {
             isLoading ? (
               <>

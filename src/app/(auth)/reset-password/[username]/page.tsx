@@ -99,16 +99,16 @@ const ResetPasswordPage = () => {
                     <label htmlFor="password">
                         Password
                     </label>
-                        <Input onChange={(e)=> setPassword(e.target.value)} placeholder='Enter new Password' className='md:h-auto md:text-base h-12 text-xl' type="password" id='email' />
+                        <Input onChange={(e)=> setPassword(e.target.value)} placeholder='Enter new Password' className='md:h-auto md:text-base h-10 text-lg' type="password" id='email' />
                 </div>
                 <div className='flex flex-col justify-start w-80 my-4'>
                     <label htmlFor="confirm-email">
                         Confirm Password
                     </label>
-                        <Input onChange={(e)=> setConfirmPassword(e.target.value)} placeholder='Confirm new Password' className='md:h-auto md:text-base h-12 text-xl' type="password" id='confirm-email' />
+                        <Input onChange={(e)=> setConfirmPassword(e.target.value)} placeholder='Confirm new Password' className='md:h-auto md:text-base h-10 text-lh' type="password" id='confirm-email' />
                 </div>
                 <div>
-                <Button type="submit" onClick={resetPassword} className='md:h-auto md:text-base h-12 text-xl w-full' disabled={isLoading}>
+                <Button type="submit" onClick={resetPassword} className='md:h-auto md:text-base h-10 text-lg w-full' disabled={isLoading}>
           {
             isLoading ? (
               <>

@@ -7,7 +7,7 @@ const Footer = () => {
     <footer className="dark:text-white dark:bg-[#030315] text-[#030315] bg-white body-font">
   <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
     <a className="flex title-font font-medium items-center md:justify-start justify-center text-white">
-      <Image src={logo} alt='logo' width={50} height={50} className='bg-[#030315] p-2 rounded-lg'/>
+      <Image src={logo} alt='logo' width={50} height={50} className='bg-[#030315] px-2 py-1 rounded-lg'/>
       <span className="ml-3 text-xl dark:text-white text-[#030315]">TrimLinks</span>
     </a>
     <div className="text-sm sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">© 2024 TrimLinks —
