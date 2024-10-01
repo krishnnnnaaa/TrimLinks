@@ -43,7 +43,7 @@ import {
         <Body style={main}>
           <Container style={container}>
             <Section style={logo}>
-              <Img width={114} src={'http://localhost:3000/_next/image?url=_next%2Fstatic%2Fmedia%2Ftrimlinks_logo_full-removebg-preview.eab81d47.png&w=128&q=75'} />
+              <Img width={114} src={'https://trim-links.vercel.app/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Ftrimlinks_logo_full-removebg-preview.eab81d47.png&w=128&q=75'} />
             </Section>
             <Section style={sectionsBorders}>
               <Row>
